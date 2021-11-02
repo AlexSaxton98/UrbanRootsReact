@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -13,3 +14,11 @@ body {
   font-size: 3.5rem;
   margin-top: 10%;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+p {
+  font-family: 'Raleway', sans-serif;
+}
+
+
