@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Axios from 'axios'
 import './Login.css'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
 
@@ -27,7 +28,7 @@ const Login = () => {
                     <input type="password" placeholder="Password..." onChange={e => setPassword(e.target.value)}/>
                     <input type="submit" value="Login" onClick={login}/>
                 </form>
-                <p>Don't have an account? <span className="signup">Sign up.</span> </p>
+                <p>Don't have an account? <span className="signup"><Link to='/register'>Sign up.</Link></span> </p>
             </div>
         </div>
     )
