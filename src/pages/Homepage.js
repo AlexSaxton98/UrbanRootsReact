@@ -1,6 +1,5 @@
 import './Homepage.css'
 import Featured from '../components/Featured'
-import React, { useState, useEffect } from 'react';
 import Product1 from "../components/product"
 
 
