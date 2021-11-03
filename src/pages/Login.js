@@ -20,7 +20,7 @@ const Login = () => {
 
     return (
         <div className="login">
-            <div className="content">
+            <div className="content_login">
                 <p>Logo Goes Here</p>
                 <form>
                     <input type="text" placeholder="Email..." onChange={e => setUsername(e.target.value)}/>
