@@ -16,9 +16,9 @@ const handleFetch = async () => {
     try {
         console.log("got here 2")
         let response = await fetch("http://localhost:80/product")
-        let data = await response.json()
-        console.log(data)
-        setData(data[0])
+        let info = await response.json()
+        console.log(info.data)
+        setData(info.data[0])
     } catch (error) {
         console.log(error)
     }
@@ -29,7 +29,7 @@ const handleFetch = async () => {
         <div className="home">
             <div className="content">
                 <Featured />
-                <img src={data.imageUrl} />
+                <img src={data} />
                 <p>{data}</p>
                 <Product />
             </div>
