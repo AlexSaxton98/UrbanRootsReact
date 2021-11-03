@@ -1,17 +1,19 @@
 import { useState } from 'react'
-import Axios from 'axios'
+import axios from 'axios'
 import './Login.css'
 import { Link } from 'react-router-dom'
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Login = () => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    Axios.defaults.withCredentials = true
+    axios.defaults.withCredentials = true
 
     const login = () => {
-    Axios.post('http://localhost/users/login', {
+    axios.post(`${BASE_URL}/users/login`, {
       username: username,
       password: password
     }).then((response) => {

@@ -1,16 +1,18 @@
 import { useState } from 'react'
-import Axios from 'axios'
+import axios from 'axios'
 import './Login.css'
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Register = () => {
 
     const [regUsername, setRegUsername] = useState("")
     const [regPassword, setRegPassword] = useState("")
 
-    Axios.defaults.withCredentials = true
+    axios.defaults.withCredentials = true
 
   const register = () => {
-    Axios.post('http://localhost/users/register', {
+    axios.post(`${BASE_URL}/users/register`, {
       username: regUsername,
       password: regPassword
     }).then((response) => {
