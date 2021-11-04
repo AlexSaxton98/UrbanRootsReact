@@ -36,7 +36,7 @@ const handleFetch = async () => {
   return (
     <div>
       {/* <button >Product</button> */}
-      <img className="prodImg" src={data.imageUrl} onClick={handleShowModal} alt="plant"/>
+      <img className="prodImgMain" src={data.imageUrl} onClick={handleShowModal} alt="plant"/>
        <Modal 
                     isOpen={showModal}
                     ariaHideApp={false}
@@ -53,6 +53,8 @@ const handleFetch = async () => {
                           <div className="prodInfo">
                             <p>{data.name}</p>
                             <p>{data.description}</p>
+                            <p>£{data.price}</p>
+                            <button>Add To Basket</button>
                             </div>
                           <div className="xDiv">
                               <button onClick={handleHideModal} className="x">×</button>

@@ -59,6 +59,10 @@
     max-height: 80%;
     margin: 5%;
 }
+.prodImgMain{
+    max-height: 30vh;
+    margin: 5%;
+}
 .prodInfo{
     display: flex;
     flex-direction: column;

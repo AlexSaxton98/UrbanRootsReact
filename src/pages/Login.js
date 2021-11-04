@@ -2,6 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import './Login.css'
 import { Link } from 'react-router-dom'
+import URLogo from "../assets/URLogo_finished.png"
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -24,7 +25,8 @@ const Login = () => {
     return (
         <div className="login">
             <div className="content_login">
-                <p>Logo Goes Here</p>
+                <img className="logo" src={URLogo}/>
+                <p>Log In</p>
                 <form>
                     <input type="text" placeholder="Email..." onChange={e => setUsername(e.target.value)}/>
                     <input type="password" placeholder="Password..." onChange={e => setPassword(e.target.value)}/>
