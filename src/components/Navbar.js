@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import basketIcon from "../assets/basket-small.png";
 
 function NavBar() {
   const [click, setClick] = useState(false);
@@ -58,6 +59,17 @@ function NavBar() {
                 onClick={handleClick}
               >
                 Login
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                exact
+                to="/basket"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                <img className="basketIconSmall" src={basketIcon} alt="basket" />
               </NavLink>
             </li>
           </ul>

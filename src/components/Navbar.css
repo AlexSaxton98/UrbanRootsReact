@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #1f5156;
+    background-color: #0b7236;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -34,6 +34,10 @@
     list-style: none;
     text-align: center;
     margin-right: 2rem;
+    align-items: center;
+  }
+  .basketIconSmall{
+    height: 60px;
   }
   
   .nav-links {
