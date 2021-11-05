@@ -1,38 +1,50 @@
 import Modal from 'react-modal';
 import React, { useState, useEffect } from 'react';
 import "./product.css";
+import axios from 'axios'
 
 const Product = () =>{
-
+  const [showModal, setShowModal] = useState(false);
+    const handleShowModal = () => {
+        setShowModal(true);
+    };
+    const handleHideModal = () => {
+        setShowModal(false);
+    };
 
   const [data, setData] = useState([{}])
 
-  useEffect(() => {
-      handleFetch()
-  }, [])
+    useEffect(() => {
+        handleFetch()
+    }, [])
 
-const handleFetch = async () => {
-  console.log("got here 1")
-  try {
-      console.log("got here 2")
-      let response = await fetch("http://localhost:80/product")
-      let info = await response.json()
-      console.log(info.data)
-      setData(info.data[0])
-  } catch (error) {
-      console.log(error)
+  const handleFetch = async () => {
+    try {
+        let response = await fetch("http://localhost:80/product")
+        let info = await response.json()
+        console.log(info.data)
+        setData(info.data[2])
+    } catch (error) {
+        console.log(error)
+    }
   }
+
+const handleClick = async () => {
+  axios.post("http://localhost:80/basket/", {
+    productName: data.productName,
+    price: data.price,
+    category: data.category,
+    imageUrl: data.imageUrl
+  }).then((response) => {
+    console.log(response)
+  })
 }
 
-  const [showModal, setShowModal] = useState(false);
 
-  const handleShowModal = () => {
-      setShowModal(true);
-  };
 
-  const handleHideModal = () => {
-      setShowModal(false);
-  };
+ 
+
+  
   return (
     <div>
       {/* <button >Product</button> */}
@@ -51,10 +63,10 @@ const handleFetch = async () => {
                           
                           <img className="prodImg" src={data.imageUrl} alt="plant"/>
                           <div className="prodInfo">
-                            <p>{data.name}</p>
+                            <p>{data.productName}</p>
                             <p>{data.description}</p>
                             <p>£{data.price}</p>
-                            <button>Add To Basket</button>
+                            <button onClick={() => handleClick(data)}>Add To Basket</button>
                             </div>
                           <div className="xDiv">
                               <button onClick={handleHideModal} className="x">×</button>

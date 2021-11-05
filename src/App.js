@@ -3,6 +3,7 @@ import './App.css';
 import Homepage from './pages/Homepage'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Basket from './pages/Basket'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import NavBar from "./components/Navbar";
 
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/home" component={Homepage}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={Register}/>
+        <Route exact path="/basket" component={Basket}/>
       </Switch>
     </Router>
 
