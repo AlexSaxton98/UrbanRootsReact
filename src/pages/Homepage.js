@@ -13,7 +13,7 @@ const Homepage = () => {
             <div className="content">
                 <Featured />
                 
-                {[...Array(5).keys()].map(num => <Product id={num} />)}
+                {[...Array(1).keys()].map(num => <Product id={num} />)}
                 
                
                 
