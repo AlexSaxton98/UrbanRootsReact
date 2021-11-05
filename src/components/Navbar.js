@@ -59,6 +59,28 @@ function NavBar() {
               >
                 Login
               </NavLink>
+              </li>
+              <li className="nav-item">
+              <NavLink
+                exact
+                to="/Basket"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Basket
+              </NavLink>
+              </li>
+              <li className="nav-item">
+              <NavLink
+                exact
+                to="/Questions"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                FAQ's
+              </NavLink>
             </li>
           </ul>
           <div className="nav-icon" onClick={handleClick}>
