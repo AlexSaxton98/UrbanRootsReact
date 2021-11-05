@@ -1,11 +1,8 @@
 import './Homepage.css'
 
 import Featured from '../components/Featured'
-import Product1 from "../components/product1"
-import Product2 from "../components/product2"
-import Product3 from "../components/product3"
-import Product4 from "../components/product4"
-import Product5 from "../components/product5"
+import Product from "../components/product1"
+
 
 
 const Homepage = () => {
@@ -16,12 +13,8 @@ const Homepage = () => {
             <div className="content">
                 <Featured />
                 
+                {[...Array(5).keys()].map(num => <Product id={num} />)}
                 
-                <Product1/>
-                <Product2/>
-                <Product3/>
-                <Product4/>
-                <Product5/>
                
                 
             </div>

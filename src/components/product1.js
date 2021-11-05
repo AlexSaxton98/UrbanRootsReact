@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-const Product = () =>{
+const Product = ({id}) =>{
   const [showModal, setShowModal] = useState(false);
     const handleShowModal = () => {
         setShowModal(true);
@@ -17,20 +17,20 @@ const Product = () =>{
   const [data, setData] = useState([{}])
 
     useEffect(() => {
-        handleFetch()
-    }, [])
-
-  const handleFetch = async () => {
+      const handleFetch = async () => {
     try {
         console.log(BASE_URL)
         let response = await fetch(`${BASE_URL}/product`)
         let info = await response.json()
         console.log(info.data)
-        setData(info.data[0])
+        setData(info.data[id])
     } catch (error) {
         console.log(error)
     }
   }
+            handleFetch()
+        }, [id])
+
 
 const handleClick = async () => {
   axios.post(`${BASE_URL}/basket/`, {
@@ -51,6 +51,8 @@ const handleClick = async () => {
   return (
     <div>
       {/* <button >Product</button> */}
+      {data.imageUrl ? 
+<>
       <img className="prodImgMain" src={data.imageUrl} onClick={handleShowModal} alt="plant"/>
        <Modal 
                     isOpen={showModal}
@@ -76,6 +78,8 @@ const handleClick = async () => {
                           </div>
                        </div>
                 </Modal>
+                </>
+          : ""  }
     </div>
   )
 
