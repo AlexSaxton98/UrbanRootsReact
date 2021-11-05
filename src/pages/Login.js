@@ -25,7 +25,7 @@ const Login = () => {
     return (
         <div className="login">
             <div className="content_login">
-                <img className="logo" src={URLogo}/>
+                <img className="logo" src={URLogo} alt="UrbanRoots Logo"/>
                 <p>Log In</p>
                 <form>
                     <input type="text" placeholder="Email..." onChange={e => setUsername(e.target.value)}/>

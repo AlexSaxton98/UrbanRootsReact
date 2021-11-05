@@ -69,7 +69,7 @@ function NavBar() {
                 className="nav-links"
                 onClick={handleClick}
               >
-                <img className="basketIconSmall" src={basketIcon} />
+                <img className="basketIconSmall" src={basketIcon} alt="basket" />
               </NavLink>
             </li>
           </ul>

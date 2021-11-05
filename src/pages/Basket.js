@@ -6,7 +6,7 @@ const Basket = () => {
 
     const [data, setData] = useState([{}])
 
-    useEffect(() => {
+    useEffect((data) => {
         handleFetch()
         console.log(data)
     }, [])

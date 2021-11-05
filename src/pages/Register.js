@@ -24,7 +24,7 @@ const Register = () => {
     return (
         <div className="login">
             <div className="content_login">
-            <img className="logo" src={URLogo}/>
+            <img className="logo" src={URLogo} alt="UrbanRoots Logo"/>
                 <p>Create an account.</p>
                 <form>
                     <input type="text" placeholder="Email..." onChange={e => setRegUsername(e.target.value)}/>
