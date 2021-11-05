@@ -2,6 +2,8 @@ import './Homepage.css'
 import React, {useState, useEffect} from "react" 
 import axios from 'axios'
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const Basket = () => {
 
     const [data, setData] = useState([{}])
@@ -13,7 +15,7 @@ const Basket = () => {
 
     const handleFetch = async () => {
         try {
-            let response = await fetch("http://localhost:80/basket")
+            let response = await fetch(`${BASE_URL}/basket`)
             let info = await response.json()
             setData(info.data)
         } catch (error) {
@@ -22,7 +24,7 @@ const Basket = () => {
     }
 
     const handleRemove = async (itemId) => {
-        axios.delete("http://localhost:80/basket", {params: { id:itemId} }).then(response => {
+        axios.delete(`${BASE_URL}/basket/${itemId}`).then(response => {
             console.log(response)
             window.location.reload();
         })
@@ -37,8 +39,7 @@ const Basket = () => {
               <img id="image-small" src={item.imageUrl} alt="plant"/><br/>
               <div className="itemInfo">
               {item.productName}:
-              £{item.price} 
-              {item.id}        
+              £{item.price}        
               <button className="basketButton" onClick={()=>handleRemove(item.id)}>Remove From Basket</button>
               </div>
             </li>
