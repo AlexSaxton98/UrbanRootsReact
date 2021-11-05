@@ -17,10 +17,7 @@ const Product = ({id}) =>{
   const [data, setData] = useState([{}])
 
     useEffect(() => {
-        handleFetch()
-    }, [])
-
-  const handleFetch = async () => {
+      const handleFetch = async () => {
     try {
         console.log(BASE_URL)
         let response = await fetch(`${BASE_URL}/product`)
@@ -31,6 +28,9 @@ const Product = ({id}) =>{
         console.log(error)
     }
   }
+            handleFetch()
+        }, [id])
+
 
 const handleClick = async () => {
   axios.post(`${BASE_URL}/basket/`, {
