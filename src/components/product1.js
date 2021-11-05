@@ -22,6 +22,7 @@ const Product = () =>{
 
   const handleFetch = async () => {
     try {
+        console.log(BASE_URL)
         let response = await fetch(`${BASE_URL}/product`)
         let info = await response.json()
         console.log(info.data)
