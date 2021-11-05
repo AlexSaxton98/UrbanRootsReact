@@ -7,14 +7,14 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Register = () => {
 
-    const [regUsername, setRegUsername] = useState("")
+    const [regEmail, setRegEmail] = useState("")
     const [regPassword, setRegPassword] = useState("")
 
     axios.defaults.withCredentials = true
 
   const register = () => {
     axios.post(`${BASE_URL}/users/register`, {
-      username: regUsername,
+      Email: regEmail,
       password: regPassword
     }).then((response) => {
       console.log(response)
@@ -27,7 +27,7 @@ const Register = () => {
             <img className="logo" src={URLogo} alt="UrbanRoots Logo"/>
                 <p>Create an account.</p>
                 <form>
-                    <input type="text" placeholder="Email..." onChange={e => setRegUsername(e.target.value)}/>
+                    <input type="text" placeholder="Email..." onChange={e => setRegEmail(e.target.value)}/>
                     <input type="password" placeholder="Password..." onChange={e => setRegPassword(e.target.value)}/>
                     <input type="submit" value="Register" onClick={register}/>
                 </form>

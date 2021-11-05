@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import "./product.css";
 import axios from 'axios'
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const Product = () =>{
   const [showModal, setShowModal] = useState(false);
     const handleShowModal = () => {
@@ -20,7 +22,7 @@ const Product = () =>{
 
   const handleFetch = async () => {
     try {
-        let response = await fetch("http://localhost:80/product")
+        let response = await fetch(`${BASE_URL}/product`)
         let info = await response.json()
         console.log(info.data)
         setData(info.data[4])
@@ -30,7 +32,7 @@ const Product = () =>{
   }
 
 const handleClick = async () => {
-  axios.post("http://localhost:80/basket/", {
+  axios.post(`${BASE_URL}/basket/`, {
     productName: data.productName,
     price: data.price,
     category: data.category,
