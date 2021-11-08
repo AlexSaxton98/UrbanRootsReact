@@ -32,7 +32,7 @@ const Homepage = () => {
     <div className="home">
       <div className="content">
         <Featured />
-        {products.map(product => <Product key={product.id} name={product.name} price={product.price} category={product.category} imageUrl={product.imageUrl} description = {product.description} />)}
+        {products.map(product => <Product key={product.id} name={product.productName} price={product.price} category={product.category} imageUrl={product.imageUrl} description = {product.description} />)}
       </div>
     </div>
   );
