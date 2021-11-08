@@ -7,10 +7,14 @@ import Product from "./components/product1";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./components/Navbar";
+import Questions from './pages/Questions';
+
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 
 function App() {
   //HOMEPAGE
@@ -114,6 +118,7 @@ useEffect(() => {
     <Router className="App">
       <NavBar />
       <Switch>
+
         <Route exact path="/home">
           <div className="home">
             <div className="content">
@@ -133,7 +138,7 @@ useEffect(() => {
             </div>
           </div>
         </Route>
-
+        <Route exact path="/Questions" component={Questions} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
 
@@ -166,9 +171,12 @@ useEffect(() => {
             </ol>
           </div>
         </Route>
+
       </Switch>
     </Router>
   );
 }
 
+
 export default App;
+
