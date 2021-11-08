@@ -38,10 +38,10 @@
 .Modal {
     
     display: flex;
-    width: 70vw;
+    width: 60vw;
     /* top: 15%; */
     margin-top: 10%;
-    margin-inline: 15%;
+    margin-inline: 20%;
     justify-content: space-evenly;
 
 
@@ -57,6 +57,10 @@
   }
 .prodImg{
     max-height: 80%;
+    margin: 5%;
+}
+.prodImgMain{
+    max-height: 30vh;
     margin: 5%;
 }
 .prodInfo{
