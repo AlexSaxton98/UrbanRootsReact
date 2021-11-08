@@ -138,7 +138,7 @@ useEffect(() => {
             </div>
           </div>
         </Route>
-
+        <Route exact path="/Questions" component={Questions} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
 

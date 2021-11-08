@@ -28,28 +28,8 @@ function NavBar() {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/test"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Test
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/Test2"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Test2
-              </NavLink>
-            </li>
+          
+            
             <li className="nav-item">
               <NavLink
                 exact

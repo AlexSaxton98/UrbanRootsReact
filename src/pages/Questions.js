@@ -9,7 +9,7 @@ import FAQ from "../components/FAQ";
 
 function Questions () {
     
-    const [faqs, setfaqs] = useState([
+    const [faqs] = useState([
             {
                 question: 'Will my plants die when I am on holiday?',
                 answer: 'It depends on the length of time you’re away for, on the weather while you are away, on the plants position relative to the sun. However, with a thorough soaking before you leave, by grouping all the plants together – preferably in a shadier spot – your plants should be able to survive for 7 days. For more extensive periods of time, we suggest you blackmail your friends into watering them for you...',
@@ -45,11 +45,7 @@ function Questions () {
              <Header />   
              <div className="faqs">
                  {faqs.map((faq, i) => (
-                     <FAQ faq={faq} index={i} />
-
-                     
-                     
-                     
+                     <FAQ faq={faq} index={i} key ={i} />
                  ))}
              </div>
             </div>
@@ -58,12 +54,6 @@ function Questions () {
         
     )
 }
-
-
-        
-       
-
-
 
 
 export default Questions
