@@ -17,6 +17,8 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 
 function App() {
+  const [user, setUser] = useState({});
+
   //HOMEPAGE
 
   const [products, setProducts] = useState([]);
@@ -139,7 +141,9 @@ useEffect(() => {
           </div>
         </Route>
         <Route exact path="/Questions" component={Questions} />
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/login" component={Login} >
+          <Login user={user} setUser={setUser} />
+          </Route>
         <Route exact path="/register" component={Register} />
 
         {/* {
