@@ -118,11 +118,11 @@ useEffect(() => {
 
   return (
     <Router className="App">
-      <NavBar />
+      <NavBar user={user}/>
       <Switch>
-
         <Route exact path="/home">
           <div className="home">
+            <p>{user.email}</p>
             <div className="content">
               {/* <Featured /> */}
               {products.map((product) => (
@@ -135,6 +135,7 @@ useEffect(() => {
                   imageUrl={product.imageUrl}
                   description={product.description}
                   handleClick={handleClick}
+                  user ={user}
                 />
               ))}
             </div>
