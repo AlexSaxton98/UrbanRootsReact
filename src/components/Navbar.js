@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import basketIcon from "../assets/basket-small.png";
+import { useHistory } from "react-router-dom";
 
-function NavBar({ user }) {
-
+function NavBar({ user, setUser }) {
+  const history = useHistory()
   const isLoggedIn = user.token
 
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);
+  const handleLogOut = () => {
+    setUser({})
+    history.push("/home")
+  }
   return (
     <>
       <nav className="navbar">
@@ -43,6 +48,14 @@ function NavBar({ user }) {
                 FAQs
               </NavLink>
             </li>
+            {isLoggedIn ? 
+            <li className="nav-item">
+            <div className="nav-links" onClick={handleLogOut}>
+            Log Out
+            </div>
+              
+          </li>
+            :
             <li className="nav-item">
               <NavLink
                 exact
@@ -51,9 +64,10 @@ function NavBar({ user }) {
                 className="nav-links"
                 onClick={handleClick}
               >
-                Login
+                Log In
               </NavLink>
             </li>
+            }
           {isLoggedIn ? 
             <li className="nav-item">
               <NavLink

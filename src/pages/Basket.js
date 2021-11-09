@@ -34,7 +34,7 @@ const Basket = () => {
 
     return(
         <div>
-        <p>Hello World</p>
+
         {data.map((item, index) => (
             <li className="listItems">
               <img id="image-small" src={item.imageUrl} alt="plant"/><br/>

@@ -6,20 +6,17 @@ import Register from "./pages/Register";
 import Product from "./components/product1";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import NavBar from "./components/Navbar";
-import Questions from './pages/Questions';
 
+import NavBar from "./components/Navbar";
+import Questions from "./pages/Questions";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-
 function App() {
   const [user, setUser] = useState({});
-
-  //HOMEPAGE
 
   const [products, setProducts] = useState([]);
 
@@ -41,38 +38,34 @@ function App() {
     handleFetch();
   }, []);
 
+  useEffect(() => {
+    const data = localStorage.getItem("my-basket");
+    if (data) {
+      setBasket(JSON.parse(data));
+    }
+  }, []);
 
   useEffect(() => {
-    const data = localStorage.getItem("my-basket")
+    localStorage.setItem("my-basket", JSON.stringify(basket));
+  });
+
+  useEffect(() => {
+    const data = localStorage.getItem("my-total");
     if (data) {
-    setBasket(JSON.parse(data))
+      setTotal(JSON.parse(data));
     }
-}, [])
+  }, []);
 
-useEffect(() => {
-    localStorage.setItem("my-basket", JSON.stringify(basket))
-})
-
-useEffect(() => {
-  const data = localStorage.getItem("my-total")
-  if (data) {
-  setTotal(JSON.parse(data))
-  }
-}, [])
-
-useEffect(() => {
-  localStorage.setItem("my-total", JSON.stringify(total))
-})
-
-  //HOMEPAGE
+  useEffect(() => {
+    localStorage.setItem("my-total", JSON.stringify(total));
+  });
 
   const [basket, setBasket] = useState([]);
   const [total, setTotal] = useState(0);
 
   const handleClick = (data) => {
-    
     let current = [...basket];
-    const found = current.find((element) => element.id === data.id)
+    const found = current.find((element) => element.id === data.id);
 
     if (found) {
       found.quantity += 1;
@@ -81,48 +74,78 @@ useEffect(() => {
       current.push(data);
     }
     setBasket(current);
-    setTotal(current.reduce((previous, current) => previous + current.price*current.quantity, 0));
+    setTotal(
+      current.reduce(
+        (previous, current) => previous + current.price * current.quantity,
+        0
+      )
+    );
   };
 
   const removeCart = (item, index) => {
-      let current = [...basket];
-      const found = current.find((element) => element.id === item.id)
-      if (found.quantity === 0) {
-          current.splice(index, 1)
-          setBasket(current)
-          setTotal(current.reduce((previous, current) => previous + current.price*current.quantity, 0));
-      } else {
-        found.quantity -= 1
-      }
-      setBasket(current)
-      setTotal(current.reduce((previous, current) => previous + current.price*current.quantity, 0));
-
-  }
+    let current = [...basket];
+    const found = current.find((element) => element.id === item.id);
+    if (found.quantity === 0) {
+      current.splice(index, 1);
+      setBasket(current);
+      setTotal(
+        current.reduce(
+          (previous, current) => previous + current.price * current.quantity,
+          0
+        )
+      );
+    } else {
+      found.quantity -= 1;
+    }
+    setBasket(current);
+    setTotal(
+      current.reduce(
+        (previous, current) => previous + current.price * current.quantity,
+        0
+      )
+    );
+  };
 
   const addCart = (item) => {
     let current = [...basket];
-    const found = current.find((element) => element.id === item.id)
-    if(found) {
-      found.quantity += 1
+    const found = current.find((element) => element.id === item.id);
+    if (found) {
+      found.quantity += 1;
     }
-    setBasket(current)
-    setTotal(current.reduce((previous, current) => previous + current.price*current.quantity, 0));
-  }
+    setBasket(current);
+    setTotal(
+      current.reduce(
+        (previous, current) => previous + current.price * current.quantity,
+        0
+      )
+    );
+  };
 
   const handleRemove = (index) => {
-    const current = [...basket]
-    current.splice(index, 1)
-    setBasket(current)
-    setTotal(current.reduce((previous, current) => previous + current.price*current.quantity, 0));
+    const current = [...basket];
+    current.splice(index, 1);
+    setBasket(current);
+    setTotal(
+      current.reduce(
+        (previous, current) => previous + current.price * current.quantity,
+        0
+      )
+    );
   };
+
+  
+  const handleCheckout = () => {
+    setBasket([]);
+    setTotal(0)
+    // history.push("/login")
+    };
 
   return (
     <Router className="App">
-      <NavBar user={user}/>
+      <NavBar user={user} setUser={setUser} />
       <Switch>
         <Route exact path="/home">
           <div className="home">
-            <p>{user.email}</p>
             <div className="content">
               {/* <Featured /> */}
               {products.map((product) => (
@@ -135,16 +158,16 @@ useEffect(() => {
                   imageUrl={product.imageUrl}
                   description={product.description}
                   handleClick={handleClick}
-                  user ={user}
+                  user={user}
                 />
               ))}
             </div>
           </div>
         </Route>
         <Route exact path="/Questions" component={Questions} />
-        <Route exact path="/login" component={Login} >
+        <Route exact path="/login" component={Login}>
           <Login user={user} setUser={setUser} />
-          </Route>
+        </Route>
         <Route exact path="/register" component={Register} />
 
         {/* {
@@ -163,7 +186,10 @@ useEffect(() => {
                   <img id="image-small" src={item.imageUrl} alt="plant" />
                   <br />
                   <div className="itemInfo">
-                    {item.name}: £{item.price} -  <button onClick={() => removeCart(item, index)}>-</button> #{item.quantity} <button onClick={() => addCart(item)}>+</button>
+                    {item.name}: £{item.price} -{" "}
+                    <button onClick={() => removeCart(item, index)}>-</button> #
+                    {item.quantity}{" "}
+                    <button onClick={() => addCart(item)}>+</button>
                     <button
                       className="basketButton"
                       onClick={() => handleRemove(index)}
@@ -174,14 +200,12 @@ useEffect(() => {
                 </li>
               ))}
             </ol>
+            <button onClick={handleCheckout}>Checkout</button>
           </div>
         </Route>
-
       </Switch>
     </Router>
   );
 }
 
-
 export default App;
-
