@@ -3,7 +3,10 @@ import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import basketIcon from "../assets/basket-small.png";
 
-function NavBar() {
+function NavBar({ user }) {
+
+  const isLoggedIn = user.token
+
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);
@@ -28,8 +31,18 @@ function NavBar() {
                 Home
               </NavLink>
             </li>
-          
-            
+
+            <li className="nav-item">
+              <NavLink
+                exact
+                to="/Questions"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                FAQs
+              </NavLink>
+            </li>
             <li className="nav-item">
               <NavLink
                 exact
@@ -40,29 +53,8 @@ function NavBar() {
               >
                 Login
               </NavLink>
-              </li>
-              <li className="nav-item">
-              <NavLink
-                exact
-                to="/Basket"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Basket
-              </NavLink>
-              </li>
-              <li className="nav-item">
-              <NavLink
-                exact
-                to="/Questions"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                FAQ's
-              </NavLink>
             </li>
+          {isLoggedIn ? 
             <li className="nav-item">
               <NavLink
                 exact
@@ -71,13 +63,17 @@ function NavBar() {
                 className="nav-links"
                 onClick={handleClick}
               >
-                <img className="basketIconSmall" src={basketIcon} alt="basket" />
+                <img
+                  className="basketIconSmall"
+                  src={basketIcon}
+                  alt="basket"
+                />
               </NavLink>
             </li>
+            : <li></li>
+            }
+
           </ul>
-          <div className="nav-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"}></i>
-          </div>
         </div>
       </nav>
     </>

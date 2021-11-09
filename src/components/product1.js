@@ -1,6 +1,9 @@
 import Modal from "react-modal";
 import React, { useState } from "react";
 import "./product.css";
+import { useHistory } from "react-router-dom";
+
+
 
 const Product = ({
   id,
@@ -10,7 +13,11 @@ const Product = ({
   imageUrl,
   description,
   handleClick,
+  user
 }) => {
+  const history = useHistory()
+  const isLoggedIn = user.token
+
   const [showModal, setShowModal] = useState(false);
   const handleShowModal = () => {
     setShowModal(true);
@@ -18,6 +25,10 @@ const Product = ({
   const handleHideModal = () => {
     setShowModal(false);
   };
+
+  const handleLogin = () => {
+    history.push("/login")
+  }
 
   return (
     <div>
@@ -48,7 +59,8 @@ const Product = ({
                 <p>{category}</p>
                 <p>£{price}</p>
                 <button
-                  onClick={() =>
+                  onClick={isLoggedIn ?
+                    () =>
                     handleClick({
                       id,
                       name,
@@ -57,7 +69,11 @@ const Product = ({
                       imageUrl,
                       description,
                     })
+                    :
+                    () => handleLogin()
                   }
+                   
+                
                 >
                   Add To Basket
                 </button>
