@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Fruktur&family=Roboto:wght@300&display=swap");
+
+.splash_bg {
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../assets/wall.jpeg");
+}
+
+.splash_title {
+  font-family: "Fruktur", cursive;
+  color: #302718;
+  font-size: 72px;
+  letter-spacing: 2px;
+}
+
+.splash_button {
+  font-family: "Roboto", sans-serif;
+  color: #302718;
+  background: none;
+  border-radius: 25px;
+  padding: 5px 20px;
+  font-size: 20px;
+  border: 2px solid #302718;
+  text-decoration: none;
+}
+
+.splash_button a {
+  text-decoration: none;
+}
+
+.splash_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar {
+  display: hidden;
+}

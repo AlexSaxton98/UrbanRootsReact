@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Roboto&display=swap');
 
+
 .x {
+    
     font-size: 40px;
     border: none;
     cursor: pointer;
@@ -34,6 +37,7 @@
      flex-direction: row;
      max-height: 70vh;
      max-width: 70vw;
+     justify-content: space-between;
 }
 .Modal {
     
@@ -48,7 +52,7 @@
 
     background-color: #f4f4f4;
     outline: none;
-    border-radius: 5%;
+    border-radius: 25px;
     box-shadow: 5px 5px 10px -2px rgba(0,0,0,0.59);
     border: none;
     @media (max-width: 800px) {
@@ -58,13 +62,47 @@
 .prodImg{
     max-height: 80%;
     margin: 5%;
+    box-shadow: 5px 5px 10px -2px rgba(0,0,0,0.59);
 }
 .prodImgMain{
     max-height: 30vh;
     margin: 5%;
+    cursor: pointer;
+    border-radius: 15px 15px 0px 0px;
 }
 .prodInfo{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.add_button {
+    background-color: #3c8f40;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px -2px rgba(0,0,0,0.59);
+}
+
+.add_button:hover {
+    background-color: #43a047;
+}
+
+.nameprice {
+    display: flex;
+    justify-content: space-around;
+    text-overflow: ellipsis;
+}
+
+.product_container {
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px -2px rgba(0, 0, 0, 0.59);
+    min-width: 305px;
+}
+
+.overflowname {
+    text-overflow: ellipsis;
 }

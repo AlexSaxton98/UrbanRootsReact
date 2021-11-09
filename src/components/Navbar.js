@@ -1,29 +1,25 @@
-import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import basketIcon from "../assets/basket-small.png";
+import logo from "../assets/URLogo_finished.png"
 
 function NavBar() {
-  const [click, setClick] = useState(false);
-
-  const handleClick = () => setClick(!click);
   return (
     <>
       <nav className="navbar">
         <div className="nav-container">
           <NavLink exact to="/" className="nav-logo">
-            UrbanRoots
-            <i className="fas fa-code"></i>
+            <img src={logo} alt="" className="nav_logo_img"/>
           </NavLink>
 
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
+          <ul className="nav-menu">
             <li className="nav-item">
               <NavLink
                 exact
                 to="/home"
                 activeClassName="active"
                 className="nav-links"
-                onClick={handleClick}
+
               >
                 Home
               </NavLink>
@@ -36,21 +32,12 @@ function NavBar() {
                 to="/login"
                 activeClassName="active"
                 className="nav-links"
-                onClick={handleClick}
+
               >
                 Login
               </NavLink>
               </li>
               <li className="nav-item">
-              <NavLink
-                exact
-                to="/Basket"
-                activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Basket
-              </NavLink>
               </li>
               <li className="nav-item">
               <NavLink
@@ -58,7 +45,6 @@ function NavBar() {
                 to="/Questions"
                 activeClassName="active"
                 className="nav-links"
-                onClick={handleClick}
               >
                 FAQ's
               </NavLink>
@@ -69,15 +55,11 @@ function NavBar() {
                 to="/basket"
                 activeClassName="active"
                 className="nav-links"
-                onClick={handleClick}
               >
                 <img className="basketIconSmall" src={basketIcon} alt="basket" />
               </NavLink>
             </li>
           </ul>
-          <div className="nav-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"}></i>
-          </div>
         </div>
       </nav>
     </>

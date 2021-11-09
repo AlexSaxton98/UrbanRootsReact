@@ -1,71 +1,66 @@
-•{
-    display: flex;
-    justify-content: center;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    align-items: center;
-}
-body{
-    font-family:monospace;
-    background-image: url('/src/assets/wall.jpeg');
-    align-items: center;
-    
-    
-    
-}
+@import url("https://fonts.googleapis.com/css2?family=Fruktur&family=Roboto:wght@300&display=swap");
 
+• {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  align-items: center;
 
-header{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    padding: 20px;
-    background-color: rgb(222, 232, 222);
-
-
-
+    background-image: url}
+.Questions {
+  font-family: "Raleway", sans-serif;
+  background-size: cover;
+  background-repeat: no-repeat;
+  justify-content: center;
+  align-content: center;
+  padding: 20px;
+  background-image: url(../assets/wall.jpeg);
 }
 
-header, h1{
-    color: #1f5156;
-    font-family:monospace;
-    text-transform: uppercase;
-    
-    font-size: 40px;
-    
-    
-    
+header,
+h1 {
+  color: #1f5156;
+  font-family: monospace;
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
+  font-size: 40px;
 }
 
 .faqs {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 15px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 15px;
 }
-.faqs, .faq {
-margin: 30px;
-padding: 30px;
-align-items: center;
-background-color: rgb(197, 212, 187);
-border-radius: 8px;
-box-shadow: 8px 0px 10px rgb(84, 99, 72);
-}
-
-
-.faq, .fag, .faq-question {
-    position: relative;
-    background-color: rgb(222, 232, 222);
-    font-size: 15px;
-   
-
+.faqs,
+.faq {
+  margin: 30px;
+  padding: 30px;
+  align-items: center;
+  background-color: rgb(197, 212, 187);
+  border-radius: 8px;
+  box-shadow: 8px 0px 10px rgb(84, 99, 72);
 }
 
-.faq-question{
-    font-size: 20px;
-    color: rgb(136, 173, 136);
-      
+.faq,
+.fag,
+.faq-question {
+  position: relative;
+  background-color: rgb(222, 232, 222);
+  font-size: 15px;
 }
 
+.faq-question {
+  font-size: 20px;
+  color: rgb(136, 173, 136);
+}
+
+.Questions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

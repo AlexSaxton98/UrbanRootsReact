@@ -12,12 +12,11 @@ const Homepage = () => {
   useEffect(() => {
     const handleFetch = async () => {
       try {
-        axios.get(`${BASE_URL}/product`).then(response => {
-            console.log(response.data)
-            setProducts(response.data.data)
-        }) 
+        axios.get(`${BASE_URL}/product`).then((response) => {
+          console.log(response.data);
+          setProducts(response.data.data);
+        });
 
-        
         // const info = await response.json();
         // console.log(info.data.products);
         // setProducts(info.data.products);
@@ -30,9 +29,18 @@ const Homepage = () => {
 
   return (
     <div className="home">
-      <div className="content">
+      <div className="content_homepage">
         <Featured />
-        {products.map(product => <Product key={product.id} name={product.productName} price={product.price} category={product.category} imageUrl={product.imageUrl} description = {product.description} />)}
+        {products.map((product) => (
+          <Product
+            key={product.id}
+            name={product.productName}
+            price={product.price}
+            category={product.category}
+            imageUrl={product.imageUrl}
+            description={product.description}
+          />
+        ))}
       </div>
     </div>
   );
