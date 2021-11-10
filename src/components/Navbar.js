@@ -38,7 +38,6 @@ function NavBar({ user }) {
                 to="/Questions"
                 activeClassName="active"
                 className="nav-links"
-                onClick={handleClick}
               >
                 FAQs
               </NavLink>
