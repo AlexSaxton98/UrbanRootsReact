@@ -4,14 +4,17 @@ import "./pages/Homepage.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Product from "./components/product1";
+import OrderConfirm from "./pages/orderConfirm";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {  Switch, Route, useHistory} from "react-router-dom";
+
 
 import NavBar from "./components/Navbar";
 import Questions from "./pages/Questions";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -58,6 +61,17 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("my-total", JSON.stringify(total));
+  });
+
+  useEffect(() => {
+    const data = localStorage.getItem("my-user");
+    if (data) {
+      setUser(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("my-user", JSON.stringify(user));
   });
 
   const [basket, setBasket] = useState([]);
@@ -134,14 +148,16 @@ function App() {
   };
 
   
+  const history = useHistory()
+
   const handleCheckout = () => {
     setBasket([]);
     setTotal(0)
-    // history.push("/login")
+    history.push("/orderConfirm")
     };
 
   return (
-    <Router className="App">
+    <div>
       <NavBar user={user} setUser={setUser} />
       <Switch>
         <Route exact path="/home">
@@ -165,6 +181,8 @@ function App() {
           </div>
         </Route>
         <Route exact path="/Questions" component={Questions} />
+        <Route exact path ="/OrderConfirm" component ={OrderConfirm} />
+      
         <Route exact path="/login" component={Login}>
           <Login user={user} setUser={setUser} />
         </Route>
@@ -177,7 +195,6 @@ function App() {
 
         <Route exact path="/basket">
           <div>
-            {/* <p>Hello World</p> */}
 
             <h3>Total - £{total}</h3>
             <ol>
@@ -204,7 +221,7 @@ function App() {
           </div>
         </Route>
       </Switch>
-    </Router>
+      </div>
   );
 }
 
