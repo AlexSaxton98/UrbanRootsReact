@@ -4,9 +4,14 @@ import "./pages/Homepage.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Product from "./components/product1";
+
 import OrderConfirm from "./pages/orderConfirm";
 
 import {  Switch, Route, useHistory} from "react-router-dom";
+
+
+
+import Splash from "./pages/Splash";
 
 
 import NavBar from "./components/Navbar";
@@ -16,7 +21,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 
+
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 
 function App() {
   const [user, setUser] = useState({});
@@ -48,6 +55,7 @@ function App() {
     }
   }, []);
 
+
   useEffect(() => {
     localStorage.setItem("my-basket", JSON.stringify(basket));
   });
@@ -69,6 +77,7 @@ function App() {
       setUser(JSON.parse(data));
     }
   }, []);
+
 
   useEffect(() => {
     localStorage.setItem("my-user", JSON.stringify(user));
@@ -160,6 +169,9 @@ function App() {
     <div>
       <NavBar user={user} setUser={setUser} />
       <Switch>
+
+        <Route exact path="/" component={Splash} />
+
         <Route exact path="/home">
           <div className="home">
             <div className="content">
@@ -194,9 +206,11 @@ function App() {
     } */}
 
         <Route exact path="/basket">
-          <div>
 
-            <h3>Total - £{total}</h3>
+          <div className="basket_page">
+            {/* <p>Hello World</p> */}
+
+
             <ol>
               {basket.map((item, index) => (
                 <li className="listItems" key={item.id}>
@@ -204,11 +218,22 @@ function App() {
                   <br />
                   <div className="itemInfo">
                     {item.name}: £{item.price} -{" "}
-                    <button onClick={() => removeCart(item, index)}>-</button> #
-                    {item.quantity}{" "}
-                    <button onClick={() => addCart(item)}>+</button>
+
                     <button
-                      className="basketButton"
+                      onClick={() => removeCart(item, index)}
+                      className="basket_btn_class"
+                    >
+                      -
+                    </button>{" "}
+                    #{item.quantity}{" "}
+                    <button
+                      onClick={() => addCart(item)}
+                      className="basket_btn_class"
+                    >
+                      +
+                    </button>
+                    <button
+                      className="basket_btn_class"
                       onClick={() => handleRemove(index)}
                     >
                       Remove From Basket
@@ -217,7 +242,11 @@ function App() {
                 </li>
               ))}
             </ol>
+
             <button onClick={handleCheckout}>Checkout</button>
+
+            <h3>Total - £{total}</h3>
+
           </div>
         </Route>
       </Switch>

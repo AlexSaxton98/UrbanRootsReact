@@ -31,7 +31,7 @@ const Product = ({
   }
 
   return (
-    <div>
+    <div className="product_container">
       {/* <button >Product</button> */}
       {imageUrl ? (
         <>
@@ -41,6 +41,10 @@ const Product = ({
             onClick={handleShowModal}
             alt="plant"
           />
+          <div className="nameprice">
+            <p className="overflowname">{name}</p>
+            <p>£{price}</p>
+          </div>
           <Modal
             isOpen={showModal}
             ariaHideApp={false}
@@ -59,8 +63,10 @@ const Product = ({
                 <p>{category}</p>
                 <p>£{price}</p>
                 <button
+                  className="add_button"     
                   onClick={isLoggedIn ?
                     () =>
+
                     handleClick({
                       id,
                       name,

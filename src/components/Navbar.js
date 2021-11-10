@@ -1,37 +1,42 @@
-import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import basketIcon from "../assets/basket-small.png";
+
 import { useHistory } from "react-router-dom";
+
+import logo from "../assets/URLogo_finished.png"
+
+
 
 function NavBar({ user, setUser }) {
   const history = useHistory()
   const isLoggedIn = user.token
 
-  const [click, setClick] = useState(false);
 
-  const handleClick = () => setClick(!click);
+
   const handleLogOut = () => {
     setUser({})
     history.push("/home")
   }
+
+
+
   return (
     <>
       <nav className="navbar">
         <div className="nav-container">
           <NavLink exact to="/" className="nav-logo">
-            UrbanRoots
-            <i className="fas fa-code"></i>
+            <img src={logo} alt="" className="nav_logo_img"/>
           </NavLink>
 
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
+          <ul className="nav-menu">
             <li className="nav-item">
               <NavLink
                 exact
                 to="/home"
                 activeClassName="active"
                 className="nav-links"
-                onClick={handleClick}
+
               >
                 Home
               </NavLink>
@@ -40,10 +45,10 @@ function NavBar({ user, setUser }) {
             <li className="nav-item">
               <NavLink
                 exact
+
                 to="/Questions"
                 activeClassName="active"
                 className="nav-links"
-                onClick={handleClick}
               >
                 FAQs
               </NavLink>
@@ -62,7 +67,6 @@ function NavBar({ user, setUser }) {
                 to="/login"
                 activeClassName="active"
                 className="nav-links"
-                onClick={handleClick}
               >
                 Log In
               </NavLink>
@@ -75,7 +79,6 @@ function NavBar({ user, setUser }) {
                 to="/basket"
                 activeClassName="active"
                 className="nav-links"
-                onClick={handleClick}
               >
                 <img
                   className="basketIconSmall"
