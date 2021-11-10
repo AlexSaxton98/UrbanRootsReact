@@ -10,7 +10,7 @@ const OrderConfirm = () => {
         setTimeout(() => {
             history.push("/home")
         }, 5000)
-      }, []);
+      });
 
 
 
