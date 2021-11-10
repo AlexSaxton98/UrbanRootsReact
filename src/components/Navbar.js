@@ -3,7 +3,15 @@ import "./Navbar.css";
 import basketIcon from "../assets/basket-small.png";
 import logo from "../assets/URLogo_finished.png"
 
-function NavBar() {
+
+function NavBar({ user }) {
+
+  const isLoggedIn = user.token
+
+  const [click, setClick] = useState(false);
+
+  const handleClick = () => setClick(!click);
+
   return (
     <>
       <nav className="navbar">
@@ -24,31 +32,30 @@ function NavBar() {
                 Home
               </NavLink>
             </li>
-          
-            
+
+            <li className="nav-item">
+              <NavLink
+                exact
+
+                to="/Questions"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                FAQs
+              </NavLink>
+            </li>
             <li className="nav-item">
               <NavLink
                 exact
                 to="/login"
                 activeClassName="active"
                 className="nav-links"
-
               >
                 Login
               </NavLink>
-              </li>
-              <li className="nav-item">
-              </li>
-              <li className="nav-item">
-              <NavLink
-                exact
-                to="/Questions"
-                activeClassName="active"
-                className="nav-links"
-              >
-                FAQ's
-              </NavLink>
             </li>
+          {isLoggedIn ? 
             <li className="nav-item">
               <NavLink
                 exact
@@ -56,9 +63,16 @@ function NavBar() {
                 activeClassName="active"
                 className="nav-links"
               >
-                <img className="basketIconSmall" src={basketIcon} alt="basket" />
+                <img
+                  className="basketIconSmall"
+                  src={basketIcon}
+                  alt="basket"
+                />
               </NavLink>
             </li>
+            : <li></li>
+            }
+
           </ul>
         </div>
       </nav>
