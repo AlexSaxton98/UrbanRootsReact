@@ -8,9 +8,7 @@ function NavBar({ user }) {
 
   const isLoggedIn = user.token
 
-  const [click, setClick] = useState(false);
 
-  const handleClick = () => setClick(!click);
 
   return (
     <>
