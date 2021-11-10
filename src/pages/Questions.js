@@ -1,6 +1,5 @@
 import './Questions.css'
 import React, { useState } from "react";
-import Header from "../components/Header";
 import FAQ from "../components/FAQ";
 
 
@@ -41,8 +40,6 @@ function Questions () {
 
         return(
         <div className="Questions">
-            
-             <Header />   
              <div className="faqs">
                  {faqs.map((faq, i) => (
                      <FAQ faq={faq} index={i} key ={i} />
