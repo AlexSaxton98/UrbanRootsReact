@@ -50,7 +50,7 @@
 
 
 
-    background-color: #f4f4f4;
+    background-color: #dddddd;
     outline: none;
     border-radius: 25px;
     box-shadow: 5px 5px 10px -2px rgba(0,0,0,0.59);
@@ -74,6 +74,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    font-size: 24px;
+    
 }
 
 .add_button {
@@ -97,12 +99,19 @@
 }
 
 .product_container {
-    background-color: rgb(255, 255, 255);
+    background-color: #cac0ac;
     border-radius: 15px;
     box-shadow: 5px 5px 10px -2px rgba(0, 0, 0, 0.59);
     min-width: 305px;
+    transition: 0.5s;
+    margin-top: 7%;
+    padding-bottom: 10px;
+    
 }
-
+.product_container:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 .overflowname {
     text-overflow: ellipsis;
 }

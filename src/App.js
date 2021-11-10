@@ -3,32 +3,28 @@ import "./App.css";
 import "./pages/Homepage.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Product from "./components/product1";
-
-import OrderConfirm from "./pages/orderConfirm";
-
-import {  Switch, Route, useHistory} from "react-router-dom";
-
-
-
 import Splash from "./pages/Splash";
-
-
-import NavBar from "./components/Navbar";
+import OrderConfirm from "./pages/orderConfirm";
 import Questions from "./pages/Questions";
 
+import { Switch, Route, useHistory, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+
+import NavBar from "./components/Navbar";
+import Product from "./components/product1";
+
 import axios from "axios";
-
-
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-
 function App() {
   const [user, setUser] = useState({});
-
+  const [basket, setBasket] = useState([]);
+  const [total, setTotal] = useState(0);
   const [products, setProducts] = useState([]);
+  const history = useHistory();
+
+  const basketEmpty = basket.length;
 
   useEffect(() => {
     const handleFetch = async () => {
@@ -55,7 +51,6 @@ function App() {
     }
   }, []);
 
-
   useEffect(() => {
     localStorage.setItem("my-basket", JSON.stringify(basket));
   });
@@ -78,13 +73,9 @@ function App() {
     }
   }, []);
 
-
   useEffect(() => {
     localStorage.setItem("my-user", JSON.stringify(user));
   });
-
-  const [basket, setBasket] = useState([]);
-  const [total, setTotal] = useState(0);
 
   const handleClick = (data) => {
     let current = [...basket];
@@ -108,7 +99,7 @@ function App() {
   const removeCart = (item, index) => {
     let current = [...basket];
     const found = current.find((element) => element.id === item.id);
-    if (found.quantity === 0) {
+    if (found.quantity === 1) {
       current.splice(index, 1);
       setBasket(current);
       setTotal(
@@ -156,20 +147,16 @@ function App() {
     );
   };
 
-  
-  const history = useHistory()
-
   const handleCheckout = () => {
     setBasket([]);
-    setTotal(0)
-    history.push("/orderConfirm")
-    };
+    setTotal(0);
+    history.push("/orderConfirm");
+  };
 
   return (
     <div>
       <NavBar user={user} setUser={setUser} />
       <Switch>
-
         <Route exact path="/" component={Splash} />
 
         <Route exact path="/home">
@@ -193,8 +180,8 @@ function App() {
           </div>
         </Route>
         <Route exact path="/Questions" component={Questions} />
-        <Route exact path ="/OrderConfirm" component ={OrderConfirm} />
-      
+        <Route exact path="/OrderConfirm" component={OrderConfirm} />
+
         <Route exact path="/login" component={Login}>
           <Login user={user} setUser={setUser} />
         </Route>
@@ -206,10 +193,8 @@ function App() {
     } */}
 
         <Route exact path="/basket">
-
           <div className="basket_page">
             {/* <p>Hello World</p> */}
-
 
             <ol>
               {basket.map((item, index) => (
@@ -218,7 +203,6 @@ function App() {
                   <br />
                   <div className="itemInfo">
                     {item.name}: £{item.price} -{" "}
-
                     <button
                       onClick={() => removeCart(item, index)}
                       className="basket_btn_class"
@@ -243,14 +227,32 @@ function App() {
               ))}
             </ol>
 
-            <button onClick={handleCheckout}>Checkout</button>
+            {basketEmpty === 0 ? (
+              <div className="basketEmpty">
+                <h1>Your Basket is Empty</h1>
+                <p>
+                  Let's find {" "}
+                  <span className="signup">
+                    <Link to="/home">something</Link>
+                  </span>{" "}
+                  to fill it!
+                </p>
+              </div>
+            ) : (
+              <div className="checkoutBox">
+                
+                <h3>Total - £{total}</h3>
+                <button className="basket_btn_class" onClick={handleCheckout}>
+                  Checkout
+                </button>
 
-            <h3>Total - £{total}</h3>
-
+                
+              </div>
+            )}
           </div>
         </Route>
       </Switch>
-      </div>
+    </div>
   );
 }
 

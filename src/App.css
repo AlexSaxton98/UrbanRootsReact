@@ -4,7 +4,10 @@
 }
 
 body {
-  background-color: #ded2a8;
+  /* background-color: #ded2a8; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(./assets/wall.jpeg);
   overflow-x: hidden;
   font-family: 'Raleway', sans-serif;
 }
@@ -76,6 +79,7 @@ p {
   border: none;
   margin: 5px;
   border-radius: 5px;
+  box-shadow: 5px 5px 10px -2px rgba(0,0,0,0.59);
 }
 
 .basket_btn_class:hover {
