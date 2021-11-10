@@ -4,21 +4,29 @@ import "./pages/Homepage.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Product from "./components/product1";
+
+import OrderConfirm from "./pages/orderConfirm";
+
+import {  Switch, Route, useHistory} from "react-router-dom";
+
+
+
 import Splash from "./pages/Splash";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import NavBar from "./components/Navbar";
 import Questions from "./pages/Questions";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+
+
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 
 function App() {
   const [user, setUser] = useState({});
-
-  //HOMEPAGE
 
   const [products, setProducts] = useState([]);
 
@@ -47,6 +55,7 @@ function App() {
     }
   }, []);
 
+
   useEffect(() => {
     localStorage.setItem("my-basket", JSON.stringify(basket));
   });
@@ -62,7 +71,17 @@ function App() {
     localStorage.setItem("my-total", JSON.stringify(total));
   });
 
-  //HOMEPAGE
+  useEffect(() => {
+    const data = localStorage.getItem("my-user");
+    if (data) {
+      setUser(JSON.parse(data));
+    }
+  }, []);
+
+
+  useEffect(() => {
+    localStorage.setItem("my-user", JSON.stringify(user));
+  });
 
   const [basket, setBasket] = useState([]);
   const [total, setTotal] = useState(0);
@@ -137,16 +156,24 @@ function App() {
     );
   };
 
+  
+  const history = useHistory()
+
+  const handleCheckout = () => {
+    setBasket([]);
+    setTotal(0)
+    history.push("/orderConfirm")
+    };
+
   return (
-    <Router className="App">
-      <NavBar user={user}/>
+    <div>
+      <NavBar user={user} setUser={setUser} />
       <Switch>
 
         <Route exact path="/" component={Splash} />
 
         <Route exact path="/home">
           <div className="home">
-            <p>{user.email}</p>
             <div className="content">
               {/* <Featured /> */}
               {products.map((product) => (
@@ -159,16 +186,18 @@ function App() {
                   imageUrl={product.imageUrl}
                   description={product.description}
                   handleClick={handleClick}
-                  user ={user}
+                  user={user}
                 />
               ))}
             </div>
           </div>
         </Route>
         <Route exact path="/Questions" component={Questions} />
-        <Route exact path="/login" component={Login} >
+        <Route exact path ="/OrderConfirm" component ={OrderConfirm} />
+      
+        <Route exact path="/login" component={Login}>
           <Login user={user} setUser={setUser} />
-          </Route>
+        </Route>
         <Route exact path="/register" component={Register} />
 
         {/* {
@@ -177,8 +206,10 @@ function App() {
     } */}
 
         <Route exact path="/basket">
+
           <div className="basket_page">
             {/* <p>Hello World</p> */}
+
 
             <ol>
               {basket.map((item, index) => (
@@ -187,6 +218,7 @@ function App() {
                   <br />
                   <div className="itemInfo">
                     {item.name}: £{item.price} -{" "}
+
                     <button
                       onClick={() => removeCart(item, index)}
                       className="basket_btn_class"
@@ -210,11 +242,15 @@ function App() {
                 </li>
               ))}
             </ol>
+
+            <button onClick={handleCheckout}>Checkout</button>
+
             <h3>Total - £{total}</h3>
+
           </div>
         </Route>
       </Switch>
-    </Router>
+      </div>
   );
 }
 

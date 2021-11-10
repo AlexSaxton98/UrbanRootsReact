@@ -16,3 +16,15 @@
 #image-small {
     width: 100px;
   }
+
+  .orderConfirm{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 15%;
+      background-color: #f4f4f4;
+      width: 40vw;
+      height: 30vh;
+      margin-inline: 30vw;
+      justify-content: center;
+  }

@@ -11,10 +11,8 @@ const Register = () => {
   const [regPassword, setRegPassword] = useState("");
 
   const register = async (e) => {
-    console.log("got here 1");
     e.preventDefault();
     try {
-      console.log("got here 2");
       const obj = JSON.stringify({
         email: regEmail,
         password: regPassword,
